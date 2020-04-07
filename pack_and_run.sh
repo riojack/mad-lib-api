@@ -15,7 +15,7 @@ else
     exit 1
 fi
 
-echo "Found mad-lib-ui/ at: $mlui_path"
+printf "Found mad-lib-ui/ at: $mlui_path/\n"
 
 # Confirm mad-lib-ui/dist/mad-lib-ui exists or quit.
 mlui_artifact_path="$mlui_path/dist/mad-lib-ui"
@@ -24,7 +24,7 @@ if [ ! -d "$mlui_artifact_path" ]; then
     exit 1
 fi
 
-echo "Found dist/mad-lib-ui/ at: $mlui_artifact_path"
+printf "Found dist/mad-lib-ui/ at: $mlui_artifact_path/\n"
 
 # Confirm MadLibApi/static/ exists or quit.
 static_path="./MadLibApi/static"
@@ -33,4 +33,13 @@ if [ ! -d "$static_path" ]; then
     exit 1
 fi
 
-echo "Found static/ at: $static_path"
+printf "Found static/ at: $static_path/\n"
+
+rm -rf $static_path/*.{js,html}
+printf "Removed any files in $static_path/\n"
+printf "==============================================\n"
+
+find $mlui_artifact_path -type f \( -iname "*.js" -or -iname "*.html" \) -exec cp {} $static_path \; -exec printf "\tCopied: {}\n" \;
+
+printf "==============================================\n"
+printf "Finished\n"
