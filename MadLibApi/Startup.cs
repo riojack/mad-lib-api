@@ -42,10 +42,11 @@ namespace MadLibApi
                 endpoints.MapControllers();
             });
 
+            app.UseDefaultFiles();
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "static")),
-                RequestPath = "/static"
+                RequestPath = ""
             });
         }
     }
