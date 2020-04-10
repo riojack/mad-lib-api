@@ -35,11 +35,11 @@ fi
 
 printf "Found static/ at: $static_path/\n"
 
-rm -rf $static_path/*.{js,html,css}
+rm -rf $static_path/*.{js,html,css,js.map}
 printf "Removed any files in $static_path/\n"
 printf "==============================================\n"
 
-find $mlui_artifact_path -type f \( -iname "*.js" -or -iname "*.html" -or -iname "*.css" \) -exec cp {} $static_path \; -exec printf "\tCopied: {}\n" \;
+find $mlui_artifact_path -type f \( -iname "*.js" -or -iname "*.html" -or -iname "*.css" -or -iname "*.js.map" \) -exec cp {} $static_path \; -exec printf "\tCopied: {}\n" \;
 
 printf "==============================================\n"
 printf "Finished\n"
