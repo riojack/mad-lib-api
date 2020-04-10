@@ -19,9 +19,15 @@ namespace MadLibApi.Controllers
             _logger = logger;
         }
 
+        [HttpPost]
+        public void Post([FromBody] MadLib madLib) {
+            _logger.LogInformation($"POST happened with sentence: {madLib.Sentence}");
+        }
+
         [HttpGet]
         public IEnumerable<MadLib> Get()
         {
+            _logger.LogInformation("GET happened.");
             return Enumerable.Range(1, 5).Select(index => new MadLib
             {
                 Sentence = Guid.NewGuid().ToString()
